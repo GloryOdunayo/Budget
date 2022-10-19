@@ -1,0 +1,86 @@
+<div class="container mx-auto">
+    <div class="col-6 mx-auto">
+        <div class="form-group">
+            <label for="product">Product Name</label>
+            <input type="text" name="product" id="" class="form-control" placeholder="Product Name" [(ngModel)]="product">
+        </div>
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="number" name="price" id="" class="form-control" placeholder="Price" [(ngModel)]="price">
+        </div>
+        <div class="form-group">
+            <label for="date">Deadline</label>
+            <input type="date" name="date" id="" class="form-control" placeholder="Deadline" [(ngModel)]="date">
+        </div>
+        <div class="float-end">
+            <button class="btn btn-success mt-2" (click)="add()">Add</button>
+        </div>
+    </div>
+    <div class="col-6 mx-auto shadow-sm" *ngIf="budgetArray.length > 0 ">
+        <table class="table table-bordered">
+            <tr>
+                <th>S/N</th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Deadline</th>
+            </tr>
+            <!-- <tr>
+                <td>{{firstname}}</td>
+                <td>{{lastname}}</td>
+                <td>{{email}}</td>
+            </tr> -->
+            <tr *ngFor="let i=index; let list of budgetArray">
+                <td>{{i+1}}</td>
+                <td>{{list.product}}</td>
+                <td>{{list.price}}</td>
+                <td>{{list.deadline}}</td>
+                <td class="btn btn-md bg-info" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getBudget(i)">
+                    <button >Edit</button>
+                </td>
+                <td class="btn btn-md bg-danger" (click)="delet(i)">
+                    <button>Delete</button>
+                </td>
+                <!-- <div>
+                    <div>Total Price</div>
+                    <div>{{list.totalprice}}</div>
+                </div>       -->
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="editedProduct">Product Name</label>
+                    <input type="text" name="editedProduct" id="" class="form-control" placeholder={{list.product}} [(ngModel)]="editedProduct">
+                </div>
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input type="number" name="price" id="" class="form-control" placeholder={{list.price}} [(ngModel)]="editedPrice">
+                </div>
+                <div class="form-group">
+                    <label for="date">Deadline</label>
+                    <input type="date" name="date" id="" class="form-control" placeholder={{list.date}} [(ngModel)]="editedDate">
+                </div>
+            </div>
+            <div class="modal-footer">
+              <!-- <button type="button" class="btn btn-secondary" >Close</button> -->
+              <button type="button" class="btn btn-primary" (click)="edit(i)" data-bs-dismiss="modal">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+       
+    </tr>
+</table>
+<div>
+    <div>Total Price</div>
+    <div>{{this.totalprice}}</div>
+</div>
+       </div>
+       <!-- <button (click)="total(i)">Total</button> -->
+</div>
+
